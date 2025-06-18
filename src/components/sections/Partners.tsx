@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { partners } from '../assets/partnersAssets';
+import { partners } from '../assets/images/partners/partnersAssets';
 
 const Partners: React.FC = () => {
 	const { t } = useTranslation();

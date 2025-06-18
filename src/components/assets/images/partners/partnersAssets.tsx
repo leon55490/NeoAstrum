@@ -1,5 +1,5 @@
-import caldasLogo from './images/caldas.png';
-import cceLogo from './images/cce.jpg';
+import caldasLogo from './caldas.png';
+import cceLogo from './cce.jpg';
 
 export const partners = [
 	{ name: 'cce', src: cceLogo },
