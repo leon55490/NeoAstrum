@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Lightbulb, Zap, Users } from 'lucide-react';
+import { Lightbulb, Zap, UsersRound } from 'lucide-react';
 
 const About: React.FC = () => {
 	const { t } = useTranslation();
@@ -17,7 +17,7 @@ const About: React.FC = () => {
 			description: t('about.values.agility.description'),
 		},
 		{
-			icon: <Users className="w-12 h-12" color="#16adaf" />,
+			icon: <UsersRound  className="w-12 h-12" color="#16adaf" />,
 			title: t('about.values.collaboration.title'),
 			description: t('about.values.collaboration.description'),
 		},
