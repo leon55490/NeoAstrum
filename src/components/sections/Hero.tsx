@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
+import AnimatedBackground from './AnimatedBackground';
 
 const Hero: React.FC = () => {
 	const { t } = useTranslation();
@@ -24,6 +25,9 @@ const Hero: React.FC = () => {
 			id="home"
 			className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800"
 		>
+			{/* Animated background */}
+			<AnimatedBackground />
+
 			{/* Background Elements */}
 			<div className="absolute inset-0 opacity-20">
 				<div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-300 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
