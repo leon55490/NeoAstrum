@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 const STAR_COUNT = 80;
 const STAR_COLOR = '#3b82f6';
 const STAR_SIZE = 2;
-const STAR_SPEED = 0.8;
+const STAR_SPEED = 0.4;
 
 function randomBetween(a: number, b: number) {
 	return a + Math.random() * (b - a);
@@ -48,7 +48,7 @@ const AnimatedBackground: React.FC = () => {
 					const b = stars.current[j];
 					const dist = Math.hypot(a.x - b.x, a.y - b.y);
 					if (dist < 120) {
-						ctx.strokeStyle = 'rgba(59,130,246,0.15)';
+						ctx.strokeStyle = 'rgba(59, 131, 246, 0.262)';
 						ctx.lineWidth = 1;
 						ctx.beginPath();
 						ctx.moveTo(a.x, a.y);
