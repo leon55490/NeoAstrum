@@ -1,78 +1,82 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { partners } from '../assets/partnersAssets';
 
 const Partners: React.FC = () => {
-  const { t } = useTranslation();
-  const [currentIndex, setCurrentIndex] = useState(0);
+	const { t } = useTranslation();
+	const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Sample partner logos - using placeholder images
-  const partners = [
-    { name: 'TechCorp', logo: 'https://images.pexels.com/photos/159201/abstract-art-blur-bright-159201.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop' },
-    { name: 'InnovateHub', logo: 'https://images.pexels.com/photos/3483098/pexels-photo-3483098.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop' },
-    { name: 'DataFlow', logo: 'https://images.pexels.com/photos/2526878/pexels-photo-2526878.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop' },
-    { name: 'CloudVision', logo: 'https://images.pexels.com/photos/2833393/pexels-photo-2833393.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop' },
-    { name: 'NextGen', logo: 'https://images.pexels.com/photos/1090638/pexels-photo-1090638.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop' },
-    { name: 'DigitalPro', logo: 'https://images.pexels.com/photos/3584994/pexels-photo-3584994.jpeg?auto=compress&cs=tinysrgb&w=200&h=100&fit=crop' }
-  ];
+	// Animación automática tipo carrusel infinito
+	useEffect(() => {
+		const slider = sliderRef.current;
+		if (!slider) return;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === partners.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000);
+		let animationFrame: number;
+		let scrollAmount = 0;
 
-    return () => clearInterval(interval);
-  }, [partners.length]);
+		const scrollLogos = () => {
+			if (slider.scrollWidth <= slider.clientWidth) return; // No scroll si no hay overflow
+			scrollAmount += 1;
+			if (scrollAmount >= slider.scrollWidth / 2) {
+				scrollAmount = 0;
+			}
+			slider.scrollLeft = scrollAmount;
+			animationFrame = requestAnimationFrame(scrollLogos);
+		};
 
-  return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {t('partners.title')}
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
-            {t('partners.subtitle')}
-          </p>
-        </div>
+		// Duplicar los logos para efecto infinito
+		slider.innerHTML += slider.innerHTML;
 
-        <div className="relative overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
-          >
-            {partners.concat(partners).map((partner, index) => (
-              <div key={index} className="flex-none w-1/3 px-4">
-                <div className="bg-white dark:bg-gray-700 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center justify-center h-32">
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-h-16 max-w-32 object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+		scrollLogos();
 
-        <div className="flex justify-center mt-8 space-x-2">
-          {partners.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                index === currentIndex
-                  ? 'bg-primary-500'
-                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-primary-300'
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+		return () => {
+			cancelAnimationFrame(animationFrame);
+			// Limpieza: restaurar el contenido original
+			if (slider && slider.innerHTML) {
+				slider.innerHTML = slider.innerHTML.slice(0, slider.innerHTML.length / 2);
+			}
+		};
+	}, []);
+
+	return (
+		<section className="py-20 bg-gray-50 dark:bg-gray-800">
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div className="text-center mb-16">
+					<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+						{t('partners.title')}
+					</h2>
+					<div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mb-6"></div>
+					<p className="text-xl text-gray-600 dark:text-gray-300">
+						{t('partners.subtitle')}
+					</p>
+				</div>
+
+				{/* Carrusel automático de logos, sin scroll visible */}
+				<div
+					ref={sliderRef}
+					className="flex items-center gap-16 overflow-hidden w-full"
+					style={{
+						maskImage:
+							'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+					}}
+				>
+					{partners.map((partner, idx) => (
+						<div
+							key={partner.name + idx}
+							className="flex-shrink-0 flex items-center justify-center h-32 px-10"
+						>
+							<img
+								src={partner.src}
+								alt={partner.name}
+								className="h-20 md:h-24 lg:h-28 object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300"
+								style={{ maxWidth: 220 }}
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+	);
 };
 
 export default Partners;
