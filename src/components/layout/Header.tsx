@@ -53,7 +53,7 @@ const Header: React.FC = () => {
 					</div>
 
 					{/* Desktop Navigation */}
-					<div className="hidden md:block">
+					<div className="hidden mx:block">
 						<div className="ml-10 flex items-baseline space-x-4">
 							{navigation.map((item) => (
 								<button
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
 					</div>
 
 					{/* Theme Toggle & Language Toggle */}
-					<div className="hidden md:flex items-center space-x-4">
+					<div className="hidden mx:flex items-center space-x-4">
 						{/* Language Toggle */}
 						<button
 							onClick={toggleLanguage}
@@ -111,7 +111,7 @@ const Header: React.FC = () => {
 					</div>
 
 					{/* Mobile menu button */}
-					<div className="md:hidden">
+					<div className="mx:hidden">
 						<button
 							onClick={() => setIsMenuOpen(!isMenuOpen)}
 							className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
 
 				{/* Mobile Navigation */}
 				{isMenuOpen && (
-					<div className="md:hidden">
+					<div className="mx:hidden">
 						<div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
 							{navigation.map((item) => (
 								<button

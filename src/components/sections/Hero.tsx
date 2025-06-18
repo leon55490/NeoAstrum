@@ -45,9 +45,8 @@ const Hero: React.FC = () => {
 				<div className="animate-fade-in">
 					{/* Main Title */}
 					<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6">
-						<span className="block animate-slide-up">{t('hero.title')}</span>
 						<span
-							className="block bg-gradient-to-r from-primary-600 via-secondary-500 to-accent-500 bg-clip-text text-transparent animate-slide-up"
+							className="block p-4 bg-gradient-to-r from-primary-600  to-secondary-500 bg-clip-text text-transparent animate-slide-up"
 							style={{ animationDelay: '0.2s' }}
 						>
 							{t('hero.subtitle')}

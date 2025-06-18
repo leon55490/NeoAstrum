@@ -1,143 +1,143 @@
 {
-  "nav": {
-    "home": "Inicio",
-    "about": "¿Quiénes somos?",
-    "portfolio": "Portafolio",
-    "plans": "Planes",
-    "contact": "Contáctanos"
-  },
-  "hero": {
-    "title": "Tu espacio digital,",
-    "subtitle": "sin límites",
-    "description": "Transformamos ideas en soluciones digitales innovadoras. Desarrollo web, móvil, escritorio e inteligencia artificial para impulsar tu negocio.",
-    "cta": "Ver Planes",
-    "ctaSecondary": "Conocer más"
-  },
-  "about": {
-    "title": "¿Quiénes somos?",
-    "subtitle": "Innovación digital a tu alcance",
-    "description": "Somos Neo Astrum, una agencia de desarrollo digital especializada en crear soluciones tecnológicas que transforman negocios. Con experiencia en desarrollo web, aplicaciones móviles, software de escritorio e inteligencia artificial, ayudamos a PYMEs en Colombia y LATAM a digitalizar sus procesos y alcanzar nuevos horizontes.",
-    "values": {
-      "innovation": {
-        "title": "Innovación",
-        "description": "Utilizamos las últimas tecnologías para crear soluciones vanguardistas"
-      },
-      "agility": {
-        "title": "Agilidad",
-        "description": "Metodologías ágiles para entregas rápidas y eficientes"
-      },
-      "collaboration": {
-        "title": "Colaboración",
-        "description": "Trabajamos de la mano contigo en cada paso del proyecto"
-      }
-    }
-  },
-  "partners": {
-    "title": "Nuestros Aliados",
-    "subtitle": "Confianza que nos respalda"
-  },
-  "portfolio": {
-    "title": "Nuestro Portafolio",
-    "subtitle": "Proyectos que transforman",
-    "viewMore": "Ver más",
-    "projects": {
-      "ecommerce": {
-        "title": "E-commerce Fashion",
-        "description": "Plataforma de comercio electrónico con IA para recomendaciones personalizadas",
-        "tech": "React, Node.js, AI"
-      },
-      "fintech": {
-        "title": "FinTech Dashboard",
-        "description": "Dashboard financiero con análisis en tiempo real y predicciones",
-        "tech": "Vue.js, Python, ML"
-      },
-      "logistics": {
-        "title": "Sistema Logístico",
-        "description": "Aplicación móvil para gestión de flotas y optimización de rutas",
-        "tech": "React Native, Express"
-      }
-    }
-  },
-  "plans": {
-    "title": "Nuestros Planes",
-    "subtitle": "Soluciones adaptadas a tu negocio",
-    "basic": {
-      "name": "Básico",
-      "price": "$299",
-      "period": "/mes",
-      "description": "Perfecto para emprendedores y pequeños negocios",
-      "features": [
-        "Landing page profesional",
-        "Diseño responsive",
-        "SEO básico",
-        "Formulario de contacto",
-        "Soporte por email"
-      ],
-      "cta": "Adquirir"
-    },
-    "medium": {
-      "name": "Medio",
-      "price": "$599",
-      "period": "/mes",
-      "description": "Ideal para empresas en crecimiento",
-      "features": [
-        "Sitio web completo",
-        "Panel de administración",
-        "Integración con redes sociales",
-        "Analytics avanzado",
-        "Soporte prioritario",
-        "Mantenimiento incluido"
-      ],
-      "cta": "Adquirir",
-      "popular": true
-    },
-    "advanced": {
-      "name": "Avanzado",
-      "price": "$999",
-      "period": "/mes",
-      "description": "Para empresas que buscan el máximo rendimiento",
-      "features": [
-        "Aplicación web completa",
-        "App móvil nativa",
-        "Inteligencia artificial",
-        "Integración con APIs",
-        "Soporte 24/7",
-        "Consultoría especializada"
-      ],
-      "cta": "Adquirir"
-    }
-  },
-  "contact": {
-    "title": "Contáctanos",
-    "subtitle": "¿Listo para transformar tu negocio?",
-    "form": {
-      "name": "Nombre completo",
-      "email": "Correo electrónico",
-      "reason": "Motivo de contacto",
-      "message": "Mensaje",
-      "send": "Enviar mensaje"
-    },
-    "info": {
-      "title": "Información de contacto",
-      "email": "contacto@neoastrum.co",
-      "phone": "+57 300 123 4567",
-      "address": "Bogotá, Colombia",
-      "hours": "Lun - Vie: 8:00 AM - 6:00 PM"
-    }
-  },
-  "footer": {
-    "description": "Neo Astrum - Tu espacio digital, sin límites. Transformamos ideas en soluciones digitales innovadoras.",
-    "newsletter": {
-      "title": "Newsletter",
-      "description": "Suscríbete para recibir las últimas novedades",
-      "placeholder": "Tu correo electrónico",
-      "cta": "Suscribirse"
-    },
-    "links": {
-      "company": "Empresa",
-      "services": "Servicios",
-      "legal": "Legal"
-    },
-    "rights": "© 2025 Neo Astrum. Todos los derechos reservados."
-  }
+	"nav": {
+		"home": "Inicio",
+		"about": "¿Quiénes somos?",
+		"portfolio": "Portafolio",
+		"plans": "Planes",
+		"contact": "Contáctanos"
+	},
+	"hero": {
+		"title": "Tu espacio digital,",
+		"subtitle": "Tu guía en la era digital",
+		"description": "Iluminamos tu transformacion digital con soluciones accesibles y ágiles, creando las herramientas de software e IA que harán brillar a tu negocio.",
+		"cta": "Ver Planes",
+		"ctaSecondary": "Conocer más"
+	},
+	"about": {
+		"title": "¿Quiénes somos?",
+		"subtitle": "Innovación digital a tu alcance",
+		"description": "Somos Neo Astrum, una agencia de desarrollo digital especializada en crear soluciones tecnológicas que transforman negocios. Con experiencia en desarrollo web, aplicaciones móviles, software de escritorio e inteligencia artificial, ayudamos a PYMEs en Colombia y LATAM a digitalizar sus procesos y alcanzar nuevos horizontes.",
+		"values": {
+			"innovation": {
+				"title": "Innovación",
+				"description": "Utilizamos las últimas tecnologías para crear soluciones vanguardistas"
+			},
+			"agility": {
+				"title": "Agilidad",
+				"description": "Metodologías ágiles para entregas rápidas y eficientes"
+			},
+			"collaboration": {
+				"title": "Colaboración",
+				"description": "Trabajamos de la mano contigo en cada paso del proyecto"
+			}
+		}
+	},
+	"partners": {
+		"title": "Nuestros Aliados",
+		"subtitle": "Confianza que nos respalda"
+	},
+	"portfolio": {
+		"title": "Nuestro Portafolio",
+		"subtitle": "Proyectos que transforman",
+		"viewMore": "Ver más",
+		"projects": {
+			"ecommerce": {
+				"title": "E-commerce Fashion",
+				"description": "Plataforma de comercio electrónico con IA para recomendaciones personalizadas",
+				"tech": "React, Node.js, AI"
+			},
+			"fintech": {
+				"title": "FinTech Dashboard",
+				"description": "Dashboard financiero con análisis en tiempo real y predicciones",
+				"tech": "Vue.js, Python, ML"
+			},
+			"logistics": {
+				"title": "Sistema Logístico",
+				"description": "Aplicación móvil para gestión de flotas y optimización de rutas",
+				"tech": "React Native, Express"
+			}
+		}
+	},
+	"plans": {
+		"title": "Nuestros Planes",
+		"subtitle": "Soluciones adaptadas a tu negocio",
+		"basic": {
+			"name": "Básico",
+			"price": "$299",
+			"period": "/mes",
+			"description": "Perfecto para emprendedores y pequeños negocios",
+			"features": [
+				"Landing page profesional",
+				"Diseño responsive",
+				"SEO básico",
+				"Formulario de contacto",
+				"Soporte por email"
+			],
+			"cta": "Adquirir"
+		},
+		"medium": {
+			"name": "Medio",
+			"price": "$599",
+			"period": "/mes",
+			"description": "Ideal para empresas en crecimiento",
+			"features": [
+				"Sitio web completo",
+				"Panel de administración",
+				"Integración con redes sociales",
+				"Analytics avanzado",
+				"Soporte prioritario",
+				"Mantenimiento incluido"
+			],
+			"cta": "Adquirir",
+			"popular": true
+		},
+		"advanced": {
+			"name": "Avanzado",
+			"price": "$999",
+			"period": "/mes",
+			"description": "Para empresas que buscan el máximo rendimiento",
+			"features": [
+				"Aplicación web completa",
+				"App móvil nativa",
+				"Inteligencia artificial",
+				"Integración con APIs",
+				"Soporte 24/7",
+				"Consultoría especializada"
+			],
+			"cta": "Adquirir"
+		}
+	},
+	"contact": {
+		"title": "Contáctanos",
+		"subtitle": "¿Listo para transformar tu negocio?",
+		"form": {
+			"name": "Nombre completo",
+			"email": "Correo electrónico",
+			"reason": "Motivo de contacto",
+			"message": "Mensaje",
+			"send": "Enviar mensaje"
+		},
+		"info": {
+			"title": "Información de contacto",
+			"email": "contacto@neoastrum.co",
+			"phone": "+57 300 123 4567",
+			"address": "Bogotá, Colombia",
+			"hours": "Lun - Vie: 8:00 AM - 6:00 PM"
+		}
+	},
+	"footer": {
+		"description": "Neo Astrum - Tu espacio digital, sin límites. Transformamos ideas en soluciones digitales innovadoras.",
+		"newsletter": {
+			"title": "Newsletter",
+			"description": "Suscríbete para recibir las últimas novedades",
+			"placeholder": "Tu correo electrónico",
+			"cta": "Suscribirse"
+		},
+		"links": {
+			"company": "Empresa",
+			"services": "Servicios",
+			"legal": "Legal"
+		},
+		"rights": "© 2025 Neo Astrum. Todos los derechos reservados."
+	}
 }
