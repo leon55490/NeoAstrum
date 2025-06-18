@@ -1,0 +1,68 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Lightbulb, Zap, Users } from 'lucide-react';
+
+const About: React.FC = () => {
+  const { t } = useTranslation();
+
+  const values = [
+    {
+      icon: <Lightbulb className="w-8 h-8" />,
+      title: t('about.values.innovation.title'),
+      description: t('about.values.innovation.description'),
+      color: 'from-accent-500 to-accent-600'
+    },
+    {
+      icon: <Zap className="w-8 h-8" />,
+      title: t('about.values.agility.title'),
+      description: t('about.values.agility.description'),
+      color: 'from-primary-500 to-primary-600'
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: t('about.values.collaboration.title'),
+      description: t('about.values.collaboration.description'),
+      color: 'from-secondary-500 to-secondary-600'
+    }
+  ];
+
+  return (
+    <section id="about" className="py-20 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('about.title')}
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mb-6"></div>
+          <p className="text-xl text-primary-600 dark:text-primary-400 font-semibold mb-8">
+            {t('about.subtitle')}
+          </p>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            {t('about.description')}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {values.map((value, index) => (
+            <div
+              key={index}
+              className="group bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
+            >
+              <div className={`inline-flex p-4 rounded-xl bg-gradient-to-r ${value.color} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                {value.icon}
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                {value.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {value.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;

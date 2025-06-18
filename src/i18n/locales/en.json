@@ -1,0 +1,143 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "portfolio": "Portfolio",
+    "plans": "Plans",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Your digital space,",
+    "subtitle": "without limits",
+    "description": "We transform ideas into innovative digital solutions. Web, mobile, desktop development and artificial intelligence to boost your business.",
+    "cta": "View Plans",
+    "ctaSecondary": "Learn more"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Digital innovation within your reach",
+    "description": "We are Neo Astrum, a digital development agency specialized in creating technological solutions that transform businesses. With experience in web development, mobile applications, desktop software and artificial intelligence, we help SMEs in Colombia and LATAM digitize their processes and reach new horizons.",
+    "values": {
+      "innovation": {
+        "title": "Innovation",
+        "description": "We use the latest technologies to create cutting-edge solutions"
+      },
+      "agility": {
+        "title": "Agility",
+        "description": "Agile methodologies for fast and efficient deliveries"
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "description": "We work hand in hand with you at every step of the project"
+      }
+    }
+  },
+  "partners": {
+    "title": "Our Partners",
+    "subtitle": "Trust that supports us"
+  },
+  "portfolio": {
+    "title": "Our Portfolio",
+    "subtitle": "Projects that transform",
+    "viewMore": "View more",
+    "projects": {
+      "ecommerce": {
+        "title": "E-commerce Fashion",
+        "description": "E-commerce platform with AI for personalized recommendations",
+        "tech": "React, Node.js, AI"
+      },
+      "fintech": {
+        "title": "FinTech Dashboard",
+        "description": "Financial dashboard with real-time analysis and predictions",
+        "tech": "Vue.js, Python, ML"
+      },
+      "logistics": {
+        "title": "Logistics System",
+        "description": "Mobile app for fleet management and route optimization",
+        "tech": "React Native, Express"
+      }
+    }
+  },
+  "plans": {
+    "title": "Our Plans",
+    "subtitle": "Solutions adapted to your business",
+    "basic": {
+      "name": "Basic",
+      "price": "$299",
+      "period": "/month",
+      "description": "Perfect for entrepreneurs and small businesses",
+      "features": [
+        "Professional landing page",
+        "Responsive design",
+        "Basic SEO",
+        "Contact form",
+        "Email support"
+      ],
+      "cta": "Get Started"
+    },
+    "medium": {
+      "name": "Medium",
+      "price": "$599",
+      "period": "/month",
+      "description": "Ideal for growing companies",
+      "features": [
+        "Complete website",
+        "Admin panel",
+        "Social media integration",
+        "Advanced analytics",
+        "Priority support",
+        "Maintenance included"
+      ],
+      "cta": "Get Started",
+      "popular": true
+    },
+    "advanced": {
+      "name": "Advanced",
+      "price": "$999",
+      "period": "/month",
+      "description": "For companies seeking maximum performance",
+      "features": [
+        "Complete web application",
+        "Native mobile app",
+        "Artificial intelligence",
+        "API integration",
+        "24/7 support",
+        "Specialized consulting"
+      ],
+      "cta": "Get Started"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Ready to transform your business?",
+    "form": {
+      "name": "Full name",
+      "email": "Email address",
+      "reason": "Contact reason",
+      "message": "Message",
+      "send": "Send message"
+    },
+    "info": {
+      "title": "Contact information",
+      "email": "contact@neoastrum.co",
+      "phone": "+57 300 123 4567",
+      "address": "Bogotá, Colombia",
+      "hours": "Mon - Fri: 8:00 AM - 6:00 PM"
+    }
+  },
+  "footer": {
+    "description": "Neo Astrum - Your digital space, without limits. We transform ideas into innovative digital solutions.",
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Subscribe to receive the latest news",
+      "placeholder": "Your email address",
+      "cta": "Subscribe"
+    },
+    "links": {
+      "company": "Company",
+      "services": "Services",
+      "legal": "Legal"
+    },
+    "rights": "© 2025 Neo Astrum. All rights reserved."
+  }
+}
