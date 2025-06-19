@@ -43,11 +43,11 @@ const Header: React.FC = () => {
 					{/* Logo */}
 					<div className="flex items-center">
 						<div className="flex-shrink-0 flex items-center">
-							<div className="w-10 h-8 flex items-center justify-center">
+							<div className="w-14 h-14 flex items-center justify-center">
 								<img
-									src="./../../../public/favicon.png" // Replace with your logo path
+									src="./../../../public/logo.png" // Replace with your logo path
 									alt="Neo Astrum Logo"
-									className="w-10 h-10"
+									className="w-14 h-14"
 								/>
 							</div>
 							<span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">
