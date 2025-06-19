@@ -44,11 +44,7 @@ const Header: React.FC = () => {
 					<div className="flex items-center">
 						<div className="flex-shrink-0 flex items-center">
 							<div className="w-14 h-14 flex items-center justify-center">
-								<img
-									src="./../../../public/logo.png" // Replace with your logo path
-									alt="Neo Astrum Logo"
-									className="w-14 h-14"
-								/>
+								<img src="/logo.png" alt="Neo Astrum Logo" className="w-14 h-14" />
 							</div>
 							<span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">
 								Neo Astrum
