@@ -21,15 +21,35 @@ const Contact: React.FC = () => {
 		}));
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log('Form submitted:', formData);
-		setFormData({
-			name: '',
-			email: '',
-			reason: '',
-			message: '',
-		});
+
+		try {
+			const response = await fetch('http://localhost:3001/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(formData),
+			});
+
+			const result = await response.json();
+
+			if (result.success) {
+				alert('¡Mensaje enviado correctamente! Te responderemos pronto.');
+				setFormData({
+					name: '',
+					email: '',
+					reason: '',
+					message: '',
+				});
+			} else {
+				alert('Error al enviar el mensaje. Inténtalo de nuevo.');
+			}
+		} catch (error) {
+			console.error('Error:', error);
+			alert('Error de conexión. Inténtalo de nuevo.');
+		}
 	};
 
 	const contactInfo = [
