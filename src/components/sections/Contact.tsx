@@ -13,19 +13,10 @@ const Contact: React.FC = () => {
 		message: '',
 	});
 
-	// Efecto para pre-llenar el formulario con información del plan
+	// Efecto para limpiar formulario en refresh
 	useEffect(() => {
-		if (location.state?.planInfo) {
-			const { planInfo } = location.state;
-			setFormData((prev) => ({
-				...prev,
-				reason: planInfo.plan
-					? `Cotización - ${planInfo.plan}`
-					: `Cotización - ${planInfo.service}`,
-				message: planInfo.message || '',
-			}));
-		} else {
-			// Si no hay información del plan (como en un refresh), limpiar el formulario
+		// Si no hay state en la location, limpiar el formulario
+		if (!location.state) {
 			setFormData({
 				name: '',
 				email: '',
@@ -33,7 +24,23 @@ const Contact: React.FC = () => {
 				message: '',
 			});
 		}
-	}, [location.state]);
+	}, []); // Solo se ejecuta al montar el componente
+
+	// Efecto para pre-llenar el formulario con información del plan
+	useEffect(() => {
+		if (location.state?.planInfo) {
+			const { planInfo } = location.state;
+
+			// Usar directamente el serviceType si está disponible
+			const reasonValue = planInfo.serviceType || 'other';
+
+			setFormData((prev) => ({
+				...prev,
+				reason: reasonValue,
+				message: planInfo.message || '',
+			}));
+		}
+	}, [location.state, location.key]); // Agregamos location.key como dependencia
 
 	const handleInputChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>

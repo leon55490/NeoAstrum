@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Navigate, useNavigate } from 'react-router-dom';
-import { Smartphone, Globe, Bot, ArrowLeft, Check, Star } from 'lucide-react';
+import { Smartphone, Globe, Bot, Check, Star } from 'lucide-react';
 
 const ServiceDetail: React.FC = () => {
 	const { serviceId } = useParams<{ serviceId: string }>();
@@ -200,6 +200,7 @@ const ServiceDetail: React.FC = () => {
 			state: {
 				scrollToContact: true,
 				planInfo: {
+					serviceType: serviceId, // Agregamos el ID del servicio
 					service: service.title,
 					plan: plan.name,
 					price: plan.price,
@@ -215,15 +216,12 @@ const ServiceDetail: React.FC = () => {
 			state: {
 				scrollToContact: true,
 				planInfo: {
+					serviceType: serviceId, // Agregamos el ID del servicio
 					service: service.title,
 					message: `Hola, estoy interesado en ${service.title}. Me gustaría obtener más información y una cotización personalizada.`,
 				},
 			},
 		});
-	};
-
-	const goBack = () => {
-		window.history.back();
 	};
 
 	// Función para ir al inicio de la página
@@ -239,14 +237,6 @@ const ServiceDetail: React.FC = () => {
 			>
 				<div className="absolute inset-0 bg-black/20"></div>
 				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<button
-						onClick={goBack}
-						className="mb-8 flex items-center text-white/80 hover:text-white transition-colors duration-200"
-					>
-						<ArrowLeft className="w-5 h-5 mr-2" />
-						Volver
-					</button>
-
 					<div className="text-center">
 						<div className="inline-flex p-6 bg-white/20 rounded-2xl mb-8">
 							{service.icon}
