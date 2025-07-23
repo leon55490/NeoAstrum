@@ -1,67 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+	getProjects,
+	getNextProjectIndex,
+	getPrevProjectIndex,
+	getVisibleProjects,
+	type Project,
+} from '../assets/images/porfolio/portfolioAssets';
 
 const Portfolio: React.FC = () => {
 	const { t } = useTranslation();
 	const [currentProject, setCurrentProject] = useState(0);
 
-	const projects = [
-		{
-			title: t('portfolio.projects.ecommerce.title'),
-			description: t('portfolio.projects.ecommerce.description'),
-			tech: t('portfolio.projects.ecommerce.tech'),
-			image:
-				'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-			gradient: 'from-primary-600/90 to-primary-800/90',
-			category: 'ecommerce',
-			client: 'TechStore S.A.',
-			year: '2024',
-			status: 'completed',
-		},
-		{
-			title: t('portfolio.projects.fintech.title'),
-			description: t('portfolio.projects.fintech.description'),
-			tech: t('portfolio.projects.fintech.tech'),
-			image:
-				'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-			gradient: 'from-secondary-600/90 to-secondary-800/90',
-			category: 'finance',
-			client: 'Fintech Innovations',
-			year: '2023',
-			status: 'in-progress',
-		},
-		{
-			title: t('portfolio.projects.logistics.title'),
-			description: t('portfolio.projects.logistics.description'),
-			tech: t('portfolio.projects.logistics.tech'),
-			image:
-				'https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop',
-			gradient: 'from-gray-700/90 to-gray-900/90',
-			category: 'logistics',
-			client: 'LogiTrack',
-			year: '2022',
-			status: 'completed',
-		},
-	];
+	// Cargar proyectos desde el archivo de assets
+	const projects = useMemo(() => getProjects(t), [t]);
 
 	const nextProject = () => {
-		setCurrentProject((prev) => (prev + 1) % projects.length);
+		setCurrentProject((prev) => getNextProjectIndex(prev, projects.length));
 	};
 
 	const prevProject = () => {
-		setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
+		setCurrentProject((prev) => getPrevProjectIndex(prev, projects.length));
 	};
 
-	// Función para obtener los proyectos visibles en desktop (2 cartas)
-	const getVisibleProjects = () => {
-		const visibleProjects = [];
-		for (let i = 0; i < 2; i++) {
-			const index = (currentProject + i) % projects.length;
-			visibleProjects.push(projects[index]);
-		}
-		return visibleProjects;
-	};
+	// Obtener proyectos visibles para desktop
+	const visibleProjects = useMemo(
+		() => getVisibleProjects(projects, currentProject),
+		[projects, currentProject]
+	);
 
 	return (
 		<section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
@@ -154,7 +121,7 @@ const Portfolio: React.FC = () => {
 				{/* Desktop View - Solo 2 cartas */}
 				<div className="hidden md:block">
 					<div className="grid grid-cols-2 gap-8">
-						{getVisibleProjects().map((project, index) => (
+						{visibleProjects.map((project, index) => (
 							<div key={`${currentProject}-${index}`} className="group cursor-pointer">
 								<div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
 									<img
