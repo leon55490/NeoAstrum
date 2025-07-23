@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Check, Star } from 'lucide-react';
+import { Smartphone, Globe, Bot, ArrowRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -10,81 +10,102 @@ import 'swiper/css/pagination';
 const Plans: React.FC = () => {
 	const { t } = useTranslation();
 
-	const plans = [
+	const services = [
 		{
-			name: t('plans.basic.name'),
-			price: t('plans.basic.price'),
-			period: t('plans.basic.period'),
-			description: t('plans.basic.description'),
-			features: t('plans.basic.features', { returnObjects: true }) as string[],
-			cta: t('plans.basic.cta'),
-			popular: false,
-			gradient: 'from-gray-500 to-gray-600',
+			title: 'Desarrollo Móvil',
+			description: 'Aplicaciones móviles personalizadas para Android',
+			icon: <Smartphone className="w-12 h-12" />,
+			features: [
+				'Diseño nativo y multiplataforma',
+				'Integración con APIs y servicios',
+				'Optimización de rendimiento',
+				'Publicación en tiendas',
+				'Mantenimiento y actualizaciones',
+			],
+			borderColor: 'border-green-500',
+			iconBg: 'bg-green-500',
+			buttonBg: 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700',
+			service: 'mobile',
 		},
 		{
-			name: t('plans.medium.name'),
-			price: t('plans.medium.price'),
-			period: t('plans.medium.period'),
-			description: t('plans.medium.description'),
-			features: t('plans.medium.features', { returnObjects: true }) as string[],
-			cta: t('plans.medium.cta'),
-			popular: true,
-			gradient: 'from-primary-500 to-secondary-500',
+			title: 'Desarrollo Web',
+			description: 'Sitios web y aplicaciones web modernas y responsivas',
+			icon: <Globe className="w-12 h-12" />,
+			features: [
+				'Diseño responsive y moderno',
+				'Optimización SEO avanzada',
+				'Panel de administración',
+				'Integración con redes sociales',
+				'Analytics y reportes',
+			],
+			borderColor: 'border-blue-500',
+			iconBg: 'bg-blue-500',
+			buttonBg: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
+			service: 'web',
 		},
 		{
-			name: t('plans.advanced.name'),
-			price: t('plans.advanced.price'),
-			period: t('plans.advanced.period'),
-			description: t('plans.advanced.description'),
-			features: t('plans.advanced.features', { returnObjects: true }) as string[],
-			cta: t('plans.advanced.cta'),
-			popular: false,
-			gradient: 'from-accent-500 to-accent-600',
+			title: 'Automatización IA',
+			description: 'Procesos inteligentes con inteligencia artificial',
+			icon: <Bot className="w-12 h-12" />,
+			features: [
+				'Chatbots inteligentes',
+				'Automatización de procesos',
+				'Análisis predictivo',
+				'Machine Learning personalizado',
+				'Integración con sistemas existentes',
+			],
+			borderColor: 'border-red-500',
+			iconBg: 'bg-red-500',
+			buttonBg: 'from-red-500 to-red-600 hover:from-red-600 hover:to-red-700',
+			service: 'ai',
 		},
 	];
 
-	const PlanCard = ({ plan, index }: { plan: any; index: number }) => (
+	const handleServiceClick = (service: string) => {
+		// Aquí redirigirás a la página específica del servicio
+		console.log(`Navegando a servicio: ${service}`);
+		// Por ejemplo: navigate(`/servicios/${service}`);
+	};
+
+	const ServiceCard = ({ service, index }: { service: any; index: number }) => (
 		<div
-			className={`relative bg-white dark:bg-gray-900 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 h-full ${
-				plan.popular ? 'ring-4 ring-primary-500 scale-105' : ''
-			}`}
+			className={`relative bg-white dark:bg-gray-900 rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 h-full border-2 ${service.borderColor}`}
 		>
-			{plan.popular && (
-				<div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-					<div className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 py-2 rounded-full text-sm font-bold flex items-center">
-						<Star className="w-4 h-4 mr-1" />
-						Popular
-					</div>
-				</div>
-			)}
-
 			<div className="p-8">
-				<div className="text-center mb-8">
-					<h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-						{plan.name}
-					</h3>
-					<div className="flex items-baseline justify-center">
-						<span className="text-4xl font-bold text-gray-900 dark:text-white">
-							{plan.price}
-						</span>
-						<span className="text-gray-600 dark:text-gray-400 ml-1">{plan.period}</span>
+				{/* Icon */}
+				<div className="text-center mb-6">
+					<div className={`inline-flex p-4 rounded-xl ${service.iconBg} text-white mb-4`}>
+						{service.icon}
 					</div>
-					<p className="text-gray-600 dark:text-gray-300 mt-4">{plan.description}</p>
+					<h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+						{service.title}
+					</h3>
+					<p className="text-lg text-gray-600 dark:text-gray-300">
+						{service.description}
+					</p>
 				</div>
 
+				{/* Features */}
 				<ul className="space-y-4 mb-8">
-					{plan.features.map((feature, featureIndex) => (
-						<li key={featureIndex} className="flex items-start">
-							<Check className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-							<span className="text-gray-700 dark:text-gray-300">{feature}</span>
+					{service.features.map((feature, featureIndex) => (
+						<li key={featureIndex} className="flex items-center">
+							<div
+								className={`w-2 h-2 rounded-full ${service.iconBg} mr-3 flex-shrink-0`}
+							></div>
+							<span className="text-gray-700 dark:text-gray-300 text-base">
+								{feature}
+							</span>
 						</li>
 					))}
 				</ul>
 
+				{/* CTA Button */}
 				<button
-					className={`w-full py-4 px-6 rounded-xl font-semibold text-white bg-gradient-to-r ${plan.gradient} hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300`}
+					onClick={() => handleServiceClick(service.service)}
+					className={`w-full py-4 px-6 rounded-xl font-semibold text-white text-lg bg-gradient-to-r ${service.buttonBg} shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center group`}
 				>
-					{plan.cta}
+					Ver más detalles
+					<ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
 				</button>
 			</div>
 		</div>
@@ -95,18 +116,18 @@ const Plans: React.FC = () => {
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="text-center mb-16">
 					<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-						{t('plans.title')}
+						Nuestros Servicios
 					</h2>
 					<div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mb-6"></div>
 					<p className="text-xl text-gray-600 dark:text-gray-300">
-						{t('plans.subtitle')}
+						Soluciones tecnológicas que transforman tu negocio
 					</p>
 				</div>
 
 				{/* Desktop Grid */}
 				<div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
-					{plans.map((plan, index) => (
-						<PlanCard key={index} plan={plan} index={index} />
+					{services.map((service, index) => (
+						<ServiceCard key={index} service={service} index={index} />
 					))}
 				</div>
 
@@ -118,13 +139,13 @@ const Plans: React.FC = () => {
 						slidesPerView={1}
 						navigation={false}
 						pagination={{ clickable: true }}
-						className="plans-swiper"
+						className="services-swiper"
 						centeredSlides={true}
 					>
-						{plans.map((plan, index) => (
+						{services.map((service, index) => (
 							<SwiperSlide key={index}>
 								<div className="px-4 py-4">
-									<PlanCard plan={plan} index={index} />
+									<ServiceCard service={service} index={index} />
 								</div>
 							</SwiperSlide>
 						))}
@@ -133,43 +154,41 @@ const Plans: React.FC = () => {
 			</div>
 
 			<style jsx global>{`
-				.plans-swiper {
+				.services-swiper {
 					padding-bottom: 60px !important;
 					padding-top: 30px !important;
 					overflow: visible !important;
 					width: 100% !important;
 				}
-				.plans-swiper .swiper-wrapper {
+				.services-swiper .swiper-wrapper {
 					align-items: stretch;
 					overflow: visible !important;
 				}
-				.plans-swiper .swiper-slide {
+				.services-swiper .swiper-slide {
 					height: auto !important;
 					display: flex !important;
 					flex-direction: column !important;
 					width: 100% !important;
 					overflow: visible !important;
 				}
-				.plans-swiper .swiper-pagination {
+				.services-swiper .swiper-pagination {
 					bottom: 10px !important;
 					position: relative !important;
 					margin-top: 20px !important;
 				}
-				.plans-swiper .swiper-pagination-bullet {
+				.services-swiper .swiper-pagination-bullet {
 					background: #6366f1 !important;
 					opacity: 0.5 !important;
 					width: 8px !important;
 					height: 8px !important;
 				}
-				.plans-swiper .swiper-pagination-bullet-active {
+				.services-swiper .swiper-pagination-bullet-active {
 					opacity: 1 !important;
 				}
-				/* Ocultar navegación en mobile */
-				.plans-swiper .swiper-button-next,
-				.plans-swiper .swiper-button-prev {
+				.services-swiper .swiper-button-next,
+				.services-swiper .swiper-button-prev {
 					display: none !important;
 				}
-				/* Contenedor de la sección para evitar scroll horizontal */
 				@media (max-width: 768px) {
 					#plans {
 						overflow-x: hidden;
