@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
+import { PortfolioSkeleton } from '../ui/LoadingSkeleton';
 import {
 	getProjects,
 	getNextProjectIndex,
@@ -13,9 +14,19 @@ const Portfolio: React.FC = () => {
 	const { t } = useTranslation();
 	const [currentProject, setCurrentProject] = useState(0);
 	const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	// Cargar proyectos desde el archivo de assets
 	const projects = useMemo(() => getProjects(t), [t]);
+
+	// Simular carga de datos
+	React.useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 1500); // 1.5 segundos de loading
+
+		return () => clearTimeout(timer);
+	}, []);
 
 	const nextProject = () => {
 		setCurrentProject((prev) => getNextProjectIndex(prev, projects.length));
@@ -38,6 +49,25 @@ const Portfolio: React.FC = () => {
 	const closeFullscreen = () => {
 		setFullscreenImage(null);
 	};
+
+	if (isLoading) {
+		return (
+			<section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="text-center mb-16">
+						<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+							{t('portfolio.title')}
+						</h2>
+						<div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mb-6"></div>
+						<p className="text-xl text-gray-600 dark:text-gray-300">
+							{t('portfolio.subtitle')}
+						</p>
+					</div>
+					<PortfolioSkeleton />
+				</div>
+			</section>
+		);
+	}
 
 	return (
 		<section id="portfolio" className="py-20 bg-white dark:bg-gray-900">

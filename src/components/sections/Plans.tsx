@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Smartphone, Globe, Bot, ArrowRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+import { ServiceCardSkeleton } from '../ui/LoadingSkeleton';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -11,6 +12,16 @@ import { useNavigate } from 'react-router-dom';
 const Plans: React.FC = () => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const [isLoading, setIsLoading] = useState(true);
+
+	// Simular carga de servicios
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLoading(false);
+		}, 1000);
+
+		return () => clearTimeout(timer);
+	}, []);
 
 	const services = [
 		{
@@ -110,6 +121,36 @@ const Plans: React.FC = () => {
 			</div>
 		</div>
 	);
+
+	if (isLoading) {
+		return (
+			<section id="plans" className="py-20 bg-gray-50 dark:bg-gray-800">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="text-center mb-16">
+						<h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+							Nuestros Servicios
+						</h2>
+						<div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mb-6"></div>
+						<p className="text-xl text-gray-600 dark:text-gray-300">
+							Soluciones tecnológicas que transforman tu negocio
+						</p>
+					</div>
+
+					{/* Desktop Loading */}
+					<div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+						{[1, 2, 3].map((i) => (
+							<ServiceCardSkeleton key={i} />
+						))}
+					</div>
+
+					{/* Mobile Loading */}
+					<div className="md:hidden">
+						<ServiceCardSkeleton />
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	return (
 		<section id="plans" className="py-20 bg-gray-50 dark:bg-gray-800">
