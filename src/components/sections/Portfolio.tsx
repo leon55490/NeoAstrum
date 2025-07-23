@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
 import {
 	getProjects,
 	getNextProjectIndex,
@@ -12,6 +12,7 @@ import {
 const Portfolio: React.FC = () => {
 	const { t } = useTranslation();
 	const [currentProject, setCurrentProject] = useState(0);
+	const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
 
 	// Cargar proyectos desde el archivo de assets
 	const projects = useMemo(() => getProjects(t), [t]);
@@ -29,6 +30,14 @@ const Portfolio: React.FC = () => {
 		() => getVisibleProjects(projects, currentProject),
 		[projects, currentProject]
 	);
+
+	const openFullscreen = (imageUrl: string) => {
+		setFullscreenImage(imageUrl);
+	};
+
+	const closeFullscreen = () => {
+		setFullscreenImage(null);
+	};
 
 	return (
 		<section id="portfolio" className="py-20 bg-white dark:bg-gray-900">
@@ -58,12 +67,6 @@ const Portfolio: React.FC = () => {
 								></div>
 								<div className="absolute inset-0 flex items-end">
 									<div className="p-8 text-white">
-										<div className="mb-3">
-											<span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium uppercase tracking-wide">
-												{projects[currentProject].client} •{' '}
-												{projects[currentProject].year}
-											</span>
-										</div>
 										<h3 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors">
 											{projects[currentProject].title}
 										</h3>
@@ -71,12 +74,12 @@ const Portfolio: React.FC = () => {
 											{projects[currentProject].description}
 										</p>
 										<div className="flex items-center justify-between">
-											<span className="px-4 py-2 bg-white/25 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
-												{projects[currentProject].tech}
-											</span>
-											<button className="flex items-center space-x-2 bg-white/25 hover:bg-white/35 backdrop-blur-sm px-6 py-3 rounded-xl transition-all duration-300 border border-white/20 hover:border-white/30">
-												<span className="font-medium">{t('portfolio.viewMore')}</span>
-												<ExternalLink className="w-4 h-4" />
+											<button
+												onClick={() => openFullscreen(projects[currentProject].image)}
+												className="flex items-center space-x-2 bg-white/25 hover:bg-white/35 backdrop-blur-sm px-6 py-3 rounded-xl transition-all duration-300 border border-white/20 hover:border-white/30"
+											>
+												<span className="font-medium">Ver imagen completa</span>
+												<Maximize2 className="w-4 h-4" />
 											</button>
 										</div>
 									</div>
@@ -134,11 +137,6 @@ const Portfolio: React.FC = () => {
 									></div>
 									<div className="absolute inset-0 flex items-end">
 										<div className="p-8 md:p-12 text-white">
-											<div className="mb-3">
-												<span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium uppercase tracking-wide">
-													{project.client} • {project.year}
-												</span>
-											</div>
 											<h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white transition-colors">
 												{project.title}
 											</h3>
@@ -146,12 +144,12 @@ const Portfolio: React.FC = () => {
 												{project.description}
 											</p>
 											<div className="flex items-center justify-between">
-												<span className="px-4 py-2 bg-white/25 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
-													{project.tech}
-												</span>
-												<button className="flex items-center space-x-2 bg-white/25 hover:bg-white/35 backdrop-blur-sm px-6 py-3 rounded-xl transition-all duration-300 border border-white/20 hover:border-white/30">
-													<span className="font-medium">{t('portfolio.viewMore')}</span>
-													<ExternalLink className="w-4 h-4" />
+												<button
+													onClick={() => openFullscreen(project.image)}
+													className="flex items-center space-x-2 bg-white/25 hover:bg-white/35 backdrop-blur-sm px-6 py-3 rounded-xl transition-all duration-300 border border-white/20 hover:border-white/30"
+												>
+													<span className="font-medium">Ver imagen completa</span>
+													<Maximize2 className="w-4 h-4" />
 												</button>
 											</div>
 										</div>
@@ -194,6 +192,31 @@ const Portfolio: React.FC = () => {
 					</div>
 				</div>
 			</div>
+
+			{/* Modal de imagen en pantalla completa */}
+			{fullscreenImage && (
+				<div
+					className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-hidden"
+					onClick={closeFullscreen}
+				>
+					<div className="relative w-full h-full flex items-center justify-center">
+						<button
+							onClick={closeFullscreen}
+							className="absolute top-4 right-4 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm p-2 rounded-full transition-all duration-300"
+						>
+							<X className="w-6 h-6 text-white" />
+						</button>
+						<div className="max-w-[90vw] max-h-[90vh] overflow-auto">
+							<img
+								src={fullscreenImage}
+								alt="Vista completa"
+								className="w-full h-auto object-contain rounded-lg"
+								onClick={(e) => e.stopPropagation()}
+							/>
+						</div>
+					</div>
+				</div>
+			)}
 		</section>
 	);
 };
