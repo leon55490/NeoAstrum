@@ -1,9 +1,10 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, useNavigate } from 'react-router-dom';
 import { Smartphone, Globe, Bot, ArrowLeft, Check, Star } from 'lucide-react';
 
 const ServiceDetail: React.FC = () => {
 	const { serviceId } = useParams<{ serviceId: string }>();
+	const navigate = useNavigate();
 
 	const servicesData = {
 		mobile: {
@@ -193,10 +194,42 @@ const ServiceDetail: React.FC = () => {
 
 	const service = servicesData[serviceId as keyof typeof servicesData];
 
-	const handleContactClick = () => {
-		// Scroll to contact section on main page
-		window.location.href = '/#contact';
+	// Función para manejar clic en plan específico
+	const handlePlanClick = (plan: any) => {
+		navigate('/', {
+			state: {
+				scrollToContact: true,
+				planInfo: {
+					service: service.title,
+					plan: plan.name,
+					price: plan.price,
+					message: `Hola, estoy interesado en el plan ${plan.name} de ${service.title} por ${plan.price}. Me gustaría obtener más información y una cotización personalizada.`,
+				},
+			},
+		});
 	};
+
+	// Función para contacto general (botón principal)
+	const handleContactClick = () => {
+		navigate('/', {
+			state: {
+				scrollToContact: true,
+				planInfo: {
+					service: service.title,
+					message: `Hola, estoy interesado en ${service.title}. Me gustaría obtener más información y una cotización personalizada.`,
+				},
+			},
+		});
+	};
+
+	const goBack = () => {
+		window.history.back();
+	};
+
+	// Función para ir al inicio de la página
+	React.useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<div className="min-h-screen bg-white dark:bg-gray-900">
@@ -206,6 +239,14 @@ const ServiceDetail: React.FC = () => {
 			>
 				<div className="absolute inset-0 bg-black/20"></div>
 				<div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<button
+						onClick={goBack}
+						className="mb-8 flex items-center text-white/80 hover:text-white transition-colors duration-200"
+					>
+						<ArrowLeft className="w-5 h-5 mr-2" />
+						Volver
+					</button>
+
 					<div className="text-center">
 						<div className="inline-flex p-6 bg-white/20 rounded-2xl mb-8">
 							{service.icon}
@@ -317,8 +358,9 @@ const ServiceDetail: React.FC = () => {
 										))}
 									</ul>
 
+									{/* BOTÓN ACTUALIZADO */}
 									<button
-										onClick={handleContactClick}
+										onClick={() => handlePlanClick(plan)}
 										className={`w-full py-4 px-6 rounded-xl font-semibold text-white bg-gradient-to-r ${service.buttonColor} shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300`}
 									>
 										Solicitar Cotización

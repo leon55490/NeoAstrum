@@ -1,15 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
 	const { t } = useTranslation();
+	const location = useLocation();
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		reason: '',
 		message: '',
 	});
+
+	// Efecto para pre-llenar el formulario con información del plan
+	useEffect(() => {
+		if (location.state?.planInfo) {
+			const { planInfo } = location.state;
+			setFormData((prev) => ({
+				...prev,
+				reason: planInfo.plan
+					? `Cotización - ${planInfo.plan}`
+					: `Cotización - ${planInfo.service}`,
+				message: planInfo.message || '',
+			}));
+		} else {
+			// Si no hay información del plan (como en un refresh), limpiar el formulario
+			setFormData({
+				name: '',
+				email: '',
+				reason: '',
+				message: '',
+			});
+		}
+	}, [location.state]);
 
 	const handleInputChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
