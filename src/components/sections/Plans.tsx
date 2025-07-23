@@ -6,9 +6,11 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useNavigate } from 'react-router-dom';
 
 const Plans: React.FC = () => {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
 
 	const services = [
 		{
@@ -62,9 +64,7 @@ const Plans: React.FC = () => {
 	];
 
 	const handleServiceClick = (service: string) => {
-		// Aquí redirigirás a la página específica del servicio
-		console.log(`Navegando a servicio: ${service}`);
-		// Por ejemplo: navigate(`/servicios/${service}`);
+		navigate(`/servicios/${service}`);
 	};
 
 	const ServiceCard = ({ service, index }: { service: any; index: number }) => (

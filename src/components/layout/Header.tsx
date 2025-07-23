@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, Sun, Moon, Monitor, Globe } from 'lucide-react';
 import { useTheme, Theme } from '../../hooks/useTheme';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
 	const { t, i18n } = useTranslation();
 	const { theme, setTheme } = useTheme();
+	const navigate = useNavigate();
+	const location = useLocation();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
 
@@ -29,9 +32,21 @@ const Header: React.FC = () => {
 	};
 
 	const scrollToSection = (href: string) => {
-		const element = document.querySelector(href);
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
+		if (location.pathname !== '/') {
+			// Si no estamos en la página principal, navegar allí primero
+			navigate('/');
+			setTimeout(() => {
+				const element = document.querySelector(href);
+				if (element) {
+					element.scrollIntoView({ behavior: 'smooth' });
+				}
+			}, 100);
+		} else {
+			// Si ya estamos en la página principal, hacer scroll
+			const element = document.querySelector(href);
+			if (element) {
+				element.scrollIntoView({ behavior: 'smooth' });
+			}
 		}
 		setIsMenuOpen(false);
 	};
@@ -40,9 +55,12 @@ const Header: React.FC = () => {
 		<header className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-none">
 			<nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between items-center h-16">
-					{/* Logo */}
+					{/* Logo - actualizar para navegar a home */}
 					<div className="flex items-center">
-						<div className="flex-shrink-0 flex items-center">
+						<div
+							className="flex-shrink-0 flex items-center cursor-pointer"
+							onClick={() => navigate('/')}
+						>
 							<div className="w-14 h-14 flex items-center justify-center">
 								<img src="/logo.png" alt="Neo Astrum Logo" className="w-14 h-14" />
 							</div>
