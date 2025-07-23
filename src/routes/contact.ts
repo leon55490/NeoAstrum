@@ -1,7 +1,7 @@
-import express from 'express';
+import express, { Request, Response, Router } from 'express';
 import { transporter } from '../config/nodemailer';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 interface ContactFormData {
   name: string;
@@ -10,7 +10,7 @@ interface ContactFormData {
   message: string;
 }
 
-router.post('/contact', async (req, res) => {
+router.post('/contact', async (req: Request, res: Response) => {
   try {
     console.log('Received form data:', req.body);
 
